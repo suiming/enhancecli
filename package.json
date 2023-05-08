@@ -1,0 +1,33 @@
+{
+  "name": "enhanceCLI",
+  "version": "1.0.0",
+  "description": "开发工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ehcli": "bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.casstime.net:25900/a02193/enhancecli.git"
+  },
+  "keywords": [
+    "ehcli"
+  ],
+  "bin": {
+    "ehcli": "bin/index.js"
+  },
+  "author": "peter.jx@gmail.com",
+  "license": "ISC",
+  "homepage": "https://gitlab.casstime.net/a02193/enhancecli",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "child_process": "^1.0.2",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "lodash": "^4.17.21",
+    "openai": "^3.2.1",
+    "utf8": "^3.0.0",
+    "yargs": "^17.7.2"
+  }
+}
