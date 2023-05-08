@@ -33,7 +33,6 @@ ehcli gpt <promote>                       # 使用gpt对话
 # 拓展
 ehcli import <jsonpath>                   # 导入命令列表
 ehcli get normalmemo                      # 获取备忘录
-ehcli run setcassnpm                      # 设置cass npm
 ehcli run setproxy                        # clash的设置代理
 ehcli run noproxy                         # 清除命令行代理
 ehcli run openworkurls                    # 用浏览器打开工作空间

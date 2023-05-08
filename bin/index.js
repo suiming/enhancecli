@@ -181,7 +181,8 @@ yargs
     const type = argv.type;
     const id = argv.id;
     const message = argv.message;
-    let commitMessage = `git commit -m "${type}:${message} [EC-${id}](https://jira.casstime.com/browse/EC-${id})"`
+    const domain = getValueForKey("domain");
+    let commitMessage = `git commit -m "${type}:${message} [EC-${id}](https://jira.${domain}.com/browse/EC-${id})"`
     console.log(commitMessage);
 
     let branch = "提交分支名称";
