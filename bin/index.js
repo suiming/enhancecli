@@ -8,13 +8,16 @@ const fs = require('fs');
 const path = require('path');
 const { argv } = require('process');
 const { Configuration, OpenAIApi } = require('openai');
+const os = require('os');
+const userHomeDir = os.homedir();
+
 
 const getMethod = (argv, willExec) => {
     const {key, args} = argv;
     
     console.log(argv);
 
-    const shFilePath = path.join(process.cwd(), 'sh.json');
+    const shFilePath = path.join(userHomeDir, 'sh.json');
     let shData = {};
 
     if (fs.existsSync(shFilePath)) {
@@ -51,7 +54,7 @@ const getMethod = (argv, willExec) => {
 }
 
 const getValueForKey = (key) => {
-  const shFilePath = path.join(process.cwd(), 'sh.json');
+  const shFilePath = path.join(userHomeDir, 'sh.json');
   let shData = {};
 
   if (fs.existsSync(shFilePath)) {
@@ -114,7 +117,7 @@ yargs
     console.log('key', key, 'value', kvalue)
     
     // 读取当前目录的 sh.json 文件，如果不存在，则新建一个； 按 key-kvalue 的形式，保存到 sh.json中
-    const shFilePath = path.join(process.cwd(), 'sh.json');
+    const shFilePath = path.join(userHomeDir, 'sh.json');
     let shData = {};
 
     if (fs.existsSync(shFilePath)) {
@@ -247,7 +250,7 @@ yargs
     callOpenAI(promote);
   })
   .command('ls', '举例', () => {
-    const shFilePath = path.join(process.cwd(), 'sh.json');
+    const shFilePath = path.join(userHomeDir, 'sh.json');
     let shData = {};
 
     console.log('\x1b[31m', '###————————————————————————###', '\x1b[0m');
@@ -291,7 +294,7 @@ yargs
       default: ''
     });
   },(argv) => {
-    const shFilePath = path.join(process.cwd(), 'sh.json');
+    const shFilePath = path.join(userHomeDir, 'sh.json');
     let shData = {};
     if (fs.existsSync(shFilePath)) {
       const shFileContent = fs.readFileSync(shFilePath, 'utf-8');
