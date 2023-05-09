@@ -239,15 +239,15 @@ yargs
         console.error(error);
     });
   })
-  .command('gpt <promote>', '查询',  (yargs)=> {
-    yargs.positional('promote', {
-      describe: '',
-      type: 'string',
-      default: ''
+  .command('gpt [promotes..]', '查询',  (yargs)=> {
+    yargs.positional('promotes', {
+      describe: '命令value',
+      type: 'array',
+      default: []
     });
   },(argv) => {
-    const {promote} = argv; 
-    callOpenAI(promote);
+    const {promotes} = argv; 
+    callOpenAI(promotes.join(''));
   })
   .command('ls', '举例', () => {
     const shFilePath = path.join(userHomeDir, 'sh.json');
@@ -287,11 +287,11 @@ yargs
       console.log(printArr.join('\n'));
     }
   })
-  .command('import <jsonpath>', '批量插入',  (yargs)=> {
+  .command('import [jsonpath]', '批量插入',  (yargs)=> {
     yargs.positional('jsonpath', {
-      describe: '',
+      describe: 'some json path',
       type: 'string',
-      default: ''
+      demandOption: false
     });
   },(argv) => {
     const shFilePath = path.join(userHomeDir, 'sh.json');
@@ -302,8 +302,10 @@ yargs
     } else {
       fs.writeFileSync(shFilePath, '{}', 'utf-8');
     }
-
-    const {jsonpath} = argv; 
+    let {jsonpath} = argv; 
+    if (!jsonpath || jsonpath.length == 0) {
+      jsonpath = path.join(process.cwd(), 'sh.json');
+    }
     const outContent = fs.readFileSync(jsonpath, 'utf-8');
     outData = JSON.parse(outContent);
     // 合并
@@ -311,6 +313,14 @@ yargs
       shData[key] = outData[key];
     }
     fs.writeFileSync(shFilePath, JSON.stringify(shData), 'utf-8');
+
+    let printArr = [];
+      for (let key in shData) {
+        printArr.push("\x1b[31m" + key + "\x1b[0m:  " + shData[key]);
+      }
+      console.log('\x1b[31m', '###————————————————————————###', '\x1b[0m');
+      console.log("导入后结果如下");
+      console.log(printArr.join('\n'));
   })
   .help()
   .argv;

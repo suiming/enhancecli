@@ -1,6 +1,6 @@
 {
   "name": "enhancecli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "命令行增强工具",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:suiming/enhancecli.git"
   },
   "keywords": [
     "ehcli"
@@ -19,7 +19,7 @@
   },
   "author": "peter.jx@gmail.com",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/suiming/enhancecli",
   "dependencies": {
     "axios": "^1.4.0",
     "child_process": "^1.0.2",
